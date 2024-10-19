@@ -29,3 +29,4 @@ bash shell/build.sh linux
 - [Godot-GDExtension C++ 环境搭建 (Docker+MinGW/跨平台) | Convexwf's Kirakira Blog](https://blog.convexwf.com/zh/2024/05/godot-gdextension-cpp-environment-using-docker-and-mingw.html)
 - [godotengine/build-containers: Godot engine build containers](https://github.com/godotengine/build-containers)
 - [godotengine/godot-build-scripts: Build scripts used for official Godot Engine builds with https://github.com/godotengine/build-containers](https://github.com/godotengine/godot-build-scripts/tree/main)
+- [zxffffffff/start-godot-cpp: 一个 Godot 脚手架项目，使用源码编译扩展 C++ modules/GDExtension](https://github.com/zxffffffff/start-godot-cpp/tree/main)

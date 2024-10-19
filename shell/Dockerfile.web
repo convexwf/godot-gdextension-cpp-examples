@@ -1,4 +1,4 @@
-ARG img_version=4.2
+ARG img_version=4.3
 FROM godot-fedora-base:${img_version}
 
 ENV EMSCRIPTEN_VERSION=3.1.64

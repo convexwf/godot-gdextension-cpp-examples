@@ -5,7 +5,7 @@
 
 BUILD_PLATFORM="windows"
 TARGET_PLATFORM=$1
-GODOT_CPP_VERSION=4.2
+GODOT_CPP_VERSION=4.3
 
 if [ -z "$TARGET_PLATFORM" ]; then
     echo "Usage: $0 [windows|linux|web]"
@@ -31,13 +31,13 @@ if [ ! -d $PROJECT_DIR/godot-cpp ]; then
 fi
 
 # Check if the base image is already built, if not, build it
-if [ ! "$(docker images -q godot-fedora-base:4.2 2> /dev/null)" ]; then
-    echo "Building base image godot-fedora-base:4.2"
-    cd $SCRIPT_DIR && docker build -t godot-fedora-base:4.2 -f Dockerfile.base .
+if [ ! "$(docker images -q godot-fedora-base:4.3 2> /dev/null)" ]; then
+    echo "Building base image godot-fedora-base:4.3"
+    cd $SCRIPT_DIR && docker build -t godot-fedora-base:4.3 -f Dockerfile.base .
 
     # Check if the base image was built successfully
-    if [ ! "$(docker images -q godot-fedora-base:4.2 2> /dev/null)" ]; then
-        echo "Error: Failed to build base image godot-fedora-base:4.2"
+    if [ ! "$(docker images -q godot-fedora-base:4.3 2> /dev/null)" ]; then
+        echo "Error: Failed to build base image godot-fedora-base:4.3"
         exit 1
     fi
 fi
