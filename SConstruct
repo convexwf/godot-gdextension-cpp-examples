@@ -31,7 +31,7 @@ if env["platform"] == "macos":
     )
 else:
     library = env.SharedLibrary(
-        "demo/gdextension/libgdexample{}{}".format(env["suffix"], env["SHLIBSUFFIX"]),
+        "{}/gdextension/libgdexample{}{}".format(GODOT_PROJECT_NAME, env["suffix"], env["SHLIBSUFFIX"]),
         source=sources,
     )
 
