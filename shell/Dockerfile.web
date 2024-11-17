@@ -1,10 +1,12 @@
 ARG img_version=4.3
 FROM godot-fedora-base:${img_version}
 
+WORKDIR /app
+
 ENV EMSCRIPTEN_VERSION=3.1.64
 
-RUN git clone --branch ${EMSCRIPTEN_VERSION} --progress https://github.com/emscripten-core/emsdk && \
+RUN cd /root && \
+    git clone --branch ${EMSCRIPTEN_VERSION} --progress https://github.com/emscripten-core/emsdk && \
     emsdk/emsdk install ${EMSCRIPTEN_VERSION} && \
-    emsdk/emsdk activate ${EMSCRIPTEN_VERSION}
-
-CMD /bin/bash
+    emsdk/emsdk activate ${EMSCRIPTEN_VERSION} && \
+    echo "source /root/emsdk/emsdk_env.sh" >> ~/.bashrc

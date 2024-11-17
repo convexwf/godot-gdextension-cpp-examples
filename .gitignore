@@ -382,3 +382,5 @@ $RECYCLE.BIN/
 
 */.godot
 *.import
+**/export
+**/export_template

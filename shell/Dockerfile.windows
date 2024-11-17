@@ -8,4 +8,6 @@ RUN dnf -y install --setopt=install_weak_deps=False \
     rm -f llvm-mingw-20240619-ucrt-ubuntu-20.04-x86_64.tar.xz && \
     mv -f llvm-mingw-20240619-ucrt-ubuntu-20.04-x86_64 /root/llvm-mingw
 
+WORKDIR /app
+
 CMD /bin/bash

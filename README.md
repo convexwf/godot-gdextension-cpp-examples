@@ -30,3 +30,5 @@ bash shell/build.sh linux
 - [godotengine/build-containers: Godot engine build containers](https://github.com/godotengine/build-containers)
 - [godotengine/godot-build-scripts: Build scripts used for official Godot Engine builds with https://github.com/godotengine/build-containers](https://github.com/godotengine/godot-build-scripts/tree/main)
 - [zxffffffff/start-godot-cpp: 一个 Godot 脚手架项目，使用源码编译扩展 C++ modules/GDExtension](https://github.com/zxffffffff/start-godot-cpp/tree/main)
+- [Compiling for the Web — Godot Engine (stable) documentation in English](https://docs.godotengine.org/en/stable/contributing/development/compiling/compiling_for_web.html#gdextension)
+- [Building with scons > 4.0 results in an empty compile_commands.json · Issue #54434 · godotengine/godot](https://github.com/godotengine/godot/issues/54434)
