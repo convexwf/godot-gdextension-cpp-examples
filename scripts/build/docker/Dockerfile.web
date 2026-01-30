@@ -1,0 +1,19 @@
+# Docker image for building GDExtension on Web target platform
+# Uses Emscripten for WebAssembly compilation
+
+ARG img_version=4.6
+FROM godot-fedora-base:${img_version}
+
+WORKDIR /app
+
+ENV EMSCRIPTEN_VERSION=3.1.64
+
+# Install Emscripten SDK
+RUN cd /root && \
+    git clone --branch ${EMSCRIPTEN_VERSION} --progress https://github.com/emscripten-core/emsdk && \
+    cd emsdk && \
+    ./emsdk install ${EMSCRIPTEN_VERSION} && \
+    ./emsdk activate ${EMSCRIPTEN_VERSION} && \
+    echo "source /root/emsdk/emsdk_env.sh" >> ~/.bashrc
+
+CMD /bin/bash

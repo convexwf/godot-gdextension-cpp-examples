@@ -2,37 +2,33 @@
 import os
 import sys
 
+# You can find documentation for SCons and SConstruct files at:
+# https://scons.org/documentation.html
+
 GODOT_PROJECT_NAME = "demo"
+
+# This lets SCons know that we're using godot-cpp, from the godot-cpp folder.
 env = SConscript("godot-cpp/SConstruct")
 
-# For reference:
-# - CCFLAGS are compilation flags shared between C and C++
-# - CFLAGS are for C-specific compilation flags
-# - CXXFLAGS are for C++-specific compilation flags
-# - CPPFLAGS are for pre-processor flags
-# - CPPDEFINES are for pre-processor defines
-# - LINKFLAGS are for linking flags
-
-# tweak this if you want to use different folders, or more folders, to store your source code in.
+# Configures the 'src' directory as a source for header files.
 env.Append(CPPPATH=["src/"])
+
+# Collects all .cpp files in the 'src' folder as compile targets.
 sources = Glob("src/*.cpp")
 
-# env['platform'] = windows
-# env['target'] = template_debug
-# env['suffix'] = .windows.template_debug.x86_64
-# env['SHLIBSUFFIX'] = .dll
+# The filename for the dynamic library for this GDExtension.
+# $SHLIBPREFIX is a platform specific prefix for the dynamic library ('lib' on Unix, '' on Windows).
+# $SHLIBSUFFIX is the platform specific suffix for the dynamic library (for example '.dll' on Windows).
+# env["suffix"] includes the build's feature tags (e.g. '.windows.template_debug.x86_64')
+# (see https://docs.godotengine.org/en/stable/tutorials/export/feature_tags.html).
+# The final path should match a path in the '.gdextension' file.
+lib_filename = "{}gdexample{}{}".format(env.subst('$SHLIBPREFIX'), env["suffix"], env.subst('$SHLIBSUFFIX'))
 
-if env["platform"] == "macos":
-    library = env.SharedLibrary(
-        "{}/gdextension/libgdexample.{}.{}.framework/libgdexample.{}.{}".format(
-            GODOT_PROJECT_NAME, env["platform"], env["target"], env["platform"], env["target"]
-        ),
-        source=sources,
-    )
-else:
-    library = env.SharedLibrary(
-        "{}/gdextension/libgdexample{}{}".format(GODOT_PROJECT_NAME, env["suffix"], env["SHLIBSUFFIX"]),
-        source=sources,
-    )
+# Creates a SCons target for the path with our sources.
+library = env.SharedLibrary(
+    "{}/bin/{}".format(GODOT_PROJECT_NAME, lib_filename),
+    source=sources,
+)
 
+# Selects the shared library as the default target.
 Default(library)

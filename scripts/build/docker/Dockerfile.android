@@ -1,0 +1,28 @@
+# Docker image for building GDExtension on Android target platform
+# Requires Android NDK and SDK
+
+ARG img_version=4.6
+FROM godot-fedora-base:${img_version}
+
+WORKDIR /app
+
+# Install Android build dependencies
+# Note: This is a basic setup - you may need to adjust based on your Android NDK version
+RUN dnf -y install --setopt=install_weak_deps=False \
+      unzip \
+      zip \
+      && dnf clean all
+
+# Set up Android NDK
+# Note: You may need to download and extract Android NDK manually
+# or use a version-specific NDK installation
+ENV ANDROID_NDK_ROOT=/opt/android-ndk
+ENV ANDROID_NDK_HOME=/opt/android-ndk
+ENV PATH="${ANDROID_NDK_ROOT}/toolchains/llvm/prebuilt/linux-x86_64/bin:${PATH}"
+
+# Instructions for setting up Android NDK:
+# 1. Download Android NDK from https://developer.android.com/ndk/downloads
+# 2. Extract to /opt/android-ndk in the container
+# 3. Or mount it as a volume when running the container
+
+CMD /bin/bash

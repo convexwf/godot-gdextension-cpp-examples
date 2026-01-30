@@ -1,0 +1,21 @@
+# Docker image for building GDExtension on macOS target platform
+# Note: macOS builds typically require macOS host or cross-compilation tools
+# This is a placeholder - actual macOS builds may need different approach
+
+ARG img_version=4.6
+FROM godot-fedora-base:${img_version}
+
+WORKDIR /app
+
+# For macOS cross-compilation, we may need osxcross or similar tools
+# This is a basic setup - adjust based on your needs
+RUN dnf -y install --setopt=install_weak_deps=False \
+      clang \
+      && dnf clean all
+
+# Note: Actual macOS builds usually require:
+# - macOS SDK
+# - Xcode command line tools (on macOS host)
+# - Or osxcross for cross-compilation from Linux
+
+CMD /bin/bash
